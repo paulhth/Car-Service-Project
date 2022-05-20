@@ -2,7 +2,10 @@ package com.example.cs;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -40,21 +43,21 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File brandingFile = new File("src/main/resources/com/example/cs/service.png");
         Image brandingImage = new Image(brandingFile.toURI().toString());
-        brandingImageView.setImage(brandingImage); //initializare
+        brandingImageView.setImage(brandingImage);
 
 //        File lockFile = new File("src/main/resources/com/example/cs/lock.png");
 //        Image  lockImage = new Image(lockFile.toURI().toString());
 //        lockImageView.setImage(brandingImage);
     }
+    ///////////////////////////////////////////////////////////////////////////////LogincreateCustomerAccount();
     ////////////////////////////////////////////////////////////////////////////pentru user (=customer)
     //username = Ion
     //parola = pizza
-    //username = David
-    //parola = pass
+
     public void loginCustomerAction(ActionEvent event){
         if(tf_username.getText().isBlank() == false && tf_password.getText().isBlank() == false){
             msgLabel.setText("Trying to log in ...");
-            validateLoginCustomer(); //validare login
+            validateLoginCustomer();
         }else{
             msgLabel.setText("Enter your username and password");
         }
@@ -62,7 +65,7 @@ public class LoginController implements Initializable {
 
     public void registerCustomerAction(ActionEvent event){
         Stage stage = (Stage) button_sign_up_customer.getScene().getWindow();
-        stage.close(); // inchide fereastra momentan
+        stage.close();
     }
 
     public void validateLoginCustomer(){
@@ -77,7 +80,7 @@ public class LoginController implements Initializable {
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
             while(queryResult.next()){
-                if(queryResult.getInt(1) == 1){ //verificare in database
+                if(queryResult.getInt(1) == 1){
                     msgLabel.setText("Successful login.");
                 }else{
                     msgLabel.setText("Unsuccessful login.");
@@ -94,26 +97,26 @@ public class LoginController implements Initializable {
     ////////////////////////////////////////////////////////////////////////////pentru manager:
     //username: asd auto
     //parola: asd
-    //username: Best auto
-    //parola: best
+
     public void loginManagerAction(ActionEvent event){
         if(tf_username.getText().isBlank() == false && tf_password.getText().isBlank() == false){
             msgLabel.setText("Trying to log in ...");
-            validateLoginManager(); //validare username si parola
+            validateLoginManager();
         }else{
             msgLabel.setText("Enter your username and password");
         }
     }
 
     public void registerManagerAction(ActionEvent event){
-        Stage stage = (Stage) button_sign_up_customer.getScene().getWindow();
-        stage.close(); //inchide fereastra momentan
+//        Stage stage = (Stage) button_sign_up_customer.getScene().getWindow();
+//        stage.close();
+        createCustomerAccount();
     }
 
 
     public void validateLoginManager(){
         DatabaseConnection connect = new DatabaseConnection();
-        Connection connectDB = connect.getConnection(); //stabilire conexiune cu baza de date
+        Connection connectDB = connect.getConnection();
 
         String verifyLogin = "select count(1) from services where Name = '" + tf_username.getText() + "' and Password = '" + tf_password.getText() + "'";
 
@@ -123,7 +126,7 @@ public class LoginController implements Initializable {
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
             while(queryResult.next()){
-                if(queryResult.getInt(1) == 1){ //verificare username si parola
+                if(queryResult.getInt(1) == 1){
                     msgLabel.setText("Successful login.");
                 }else{
                     msgLabel.setText("Unsuccessful login.");
@@ -135,5 +138,34 @@ public class LoginController implements Initializable {
             e.getCause();
         }
     }
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+        public void createCustomerAccount(){
+            try{
+                Parent root = FXMLLoader.load(getClass().getResource("customer-registration.fxml"));
+                //Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                Stage registerStage = new Stage();
+                registerStage.setTitle("Register");
+                registerStage.setScene(new Scene(root, 600,400));
+                registerStage.show();
+
+            }catch(Exception e){
+                e.printStackTrace();
+                e.getCause();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 
 }
