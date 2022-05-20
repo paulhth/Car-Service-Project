@@ -40,7 +40,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File brandingFile = new File("src/main/resources/com/example/cs/service.png");
         Image brandingImage = new Image(brandingFile.toURI().toString());
-        brandingImageView.setImage(brandingImage);
+        brandingImageView.setImage(brandingImage); //initializare
 
 //        File lockFile = new File("src/main/resources/com/example/cs/lock.png");
 //        Image  lockImage = new Image(lockFile.toURI().toString());
@@ -49,10 +49,12 @@ public class LoginController implements Initializable {
     ////////////////////////////////////////////////////////////////////////////pentru user (=customer)
     //username = Ion
     //parola = pizza
+    //username = David
+    //parola = pass
     public void loginCustomerAction(ActionEvent event){
         if(tf_username.getText().isBlank() == false && tf_password.getText().isBlank() == false){
             msgLabel.setText("Trying to log in ...");
-            validateLoginCustomer();
+            validateLoginCustomer(); //validare login
         }else{
             msgLabel.setText("Enter your username and password");
         }
@@ -60,7 +62,7 @@ public class LoginController implements Initializable {
 
     public void registerCustomerAction(ActionEvent event){
         Stage stage = (Stage) button_sign_up_customer.getScene().getWindow();
-        stage.close();
+        stage.close(); // inchide fereastra momentan
     }
 
     public void validateLoginCustomer(){
@@ -75,7 +77,7 @@ public class LoginController implements Initializable {
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
             while(queryResult.next()){
-                if(queryResult.getInt(1) == 1){
+                if(queryResult.getInt(1) == 1){ //verificare in database
                     msgLabel.setText("Successful login.");
                 }else{
                     msgLabel.setText("Unsuccessful login.");
@@ -92,10 +94,12 @@ public class LoginController implements Initializable {
     ////////////////////////////////////////////////////////////////////////////pentru manager:
     //username: asd auto
     //parola: asd
+    //username: Best auto
+    //parola: best
     public void loginManagerAction(ActionEvent event){
         if(tf_username.getText().isBlank() == false && tf_password.getText().isBlank() == false){
             msgLabel.setText("Trying to log in ...");
-            validateLoginManager();
+            validateLoginManager(); //validare username si parola
         }else{
             msgLabel.setText("Enter your username and password");
         }
@@ -103,13 +107,13 @@ public class LoginController implements Initializable {
 
     public void registerManagerAction(ActionEvent event){
         Stage stage = (Stage) button_sign_up_customer.getScene().getWindow();
-        stage.close();
+        stage.close(); //inchide fereastra momentan
     }
 
 
     public void validateLoginManager(){
         DatabaseConnection connect = new DatabaseConnection();
-        Connection connectDB = connect.getConnection();
+        Connection connectDB = connect.getConnection(); //stabilire conexiune cu baza de date
 
         String verifyLogin = "select count(1) from services where Name = '" + tf_username.getText() + "' and Password = '" + tf_password.getText() + "'";
 
@@ -119,7 +123,7 @@ public class LoginController implements Initializable {
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
             while(queryResult.next()){
-                if(queryResult.getInt(1) == 1){
+                if(queryResult.getInt(1) == 1){ //verificare username si parola
                     msgLabel.setText("Successful login.");
                 }else{
                     msgLabel.setText("Unsuccessful login.");
