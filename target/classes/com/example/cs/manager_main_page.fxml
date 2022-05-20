@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E5E5E5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.ManagerController">
+   <children>
+      <Label fx:id="label_welcome" layoutX="376.0" layoutY="14.0" text="Welcome manager!">
+         <font>
+            <Font name="Univers Condensed Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="button_logout" layoutX="427.0" layoutY="44.0" mnemonicParsing="false" style="-fx-background-color: FFECA5;" text="Log out">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Button>
+      <Accordion layoutY="143.0" prefHeight="257.0" prefWidth="614.0">
+        <panes>
+          <TitledPane animated="false" prefHeight="237.0" prefWidth="614.0" text="Client 1 request">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #E5E5E5;">
+                     <children>
+                        <Label layoutX="27.0" layoutY="22.0" text="List of requests:">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="99.0" text="Leave message for customer:">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea layoutX="257.0" layoutY="62.0" prefHeight="92.0" prefWidth="287.0" />
+                        <Label layoutX="174.0" layoutY="22.0" text="ITP, polish">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+            </content>
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+          </TitledPane>
+          <TitledPane animated="false" text="Client 2 request">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #E5E5E5;">
+                     <children>
+                        <Label layoutX="41.0" layoutY="28.0" text="List of requests:">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="182.0" layoutY="28.0" text="tyres">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="41.0" layoutY="105.0" text="Leave message for customer:">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea layoutX="276.0" layoutY="68.0" prefHeight="92.0" prefWidth="287.0" />
+                     </children></AnchorPane>
+            </content>
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+          </TitledPane>
+          <TitledPane animated="false" text="Client 3 request">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #E5E5E5;">
+                     <children>
+                        <Label layoutX="43.0" layoutY="24.0" text="List of requests:">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="181.0" layoutY="24.0" text="AC, engine tune, brake pads">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="43.0" layoutY="102.0" text="Leave message for customer:">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea layoutX="277.0" layoutY="65.0" prefHeight="92.0" prefWidth="287.0" />
+                     </children></AnchorPane>
+            </content>
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+          </TitledPane>
+        </panes>
+      </Accordion>
+      <Button fx:id="button_logout1" layoutX="325.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-color: FFECA5;" text="Edit your car service details, facilities">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

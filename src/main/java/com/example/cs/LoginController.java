@@ -1,17 +1,17 @@
 package com.example.cs;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
 import java.io.File;
 import java.net.URL;
@@ -44,6 +44,10 @@ public class LoginController implements Initializable {
         File brandingFile = new File("src/main/resources/com/example/cs/service.png");
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
+
+//        File lockFile = new File("src/main/resources/com/example/cs/lock.png");
+//        Image  lockImage = new Image(lockFile.toURI().toString());
+//        lockImageView.setImage(brandingImage);
     }
     ///////////////////////////////////////////////////////////////////////////////LogincreateCustomerAccount();
     ////////////////////////////////////////////////////////////////////////////pentru user (=customer)
@@ -60,8 +64,7 @@ public class LoginController implements Initializable {
     }
 
     public void registerCustomerAction(ActionEvent event){
-        Stage stage = (Stage) button_sign_up_customer.getScene().getWindow();
-        stage.close();
+        createCustomerAccount();
     }
 
     public void validateLoginCustomer(){
@@ -77,9 +80,9 @@ public class LoginController implements Initializable {
 
             while(queryResult.next()){
                 if(queryResult.getInt(1) == 1){
-                    msgLabel.setText("Successful login.");
+                    msgLabel.setText("Successful login.");//////////plec
                 }else{
-                    msgLabel.setText("Unsuccessful login.");
+                    msgLabel.setText("Unsuccessful login.");/////////plec
                 }
             }
 
@@ -93,7 +96,6 @@ public class LoginController implements Initializable {
     ////////////////////////////////////////////////////////////////////////////pentru manager:
     //username: asd auto
     //parola: asd
-
     public void loginManagerAction(ActionEvent event){
         if(tf_username.getText().isBlank() == false && tf_password.getText().isBlank() == false){
             msgLabel.setText("Trying to log in ...");
@@ -104,7 +106,19 @@ public class LoginController implements Initializable {
     }
 
     public void registerManagerAction(ActionEvent event){
-        createCustomerAccount();
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("register_manager.fxml"));
+            //Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage registerStage = new Stage();
+            registerStage.setTitle("Manager registration");
+            registerStage.setScene(new Scene(root, 600,400));
+            registerStage.show();
+
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+
     }
 
 
@@ -121,9 +135,9 @@ public class LoginController implements Initializable {
 
             while(queryResult.next()){
                 if(queryResult.getInt(1) == 1){
-                    msgLabel.setText("Successful login.");
+                    msgLabel.setText("Successful login.");/////////plec
                 }else{
-                    msgLabel.setText("Unsuccessful login.");
+                    msgLabel.setText("Unsuccessful login.");////////plec
                 }
             }
 
@@ -140,8 +154,9 @@ public class LoginController implements Initializable {
         public void createCustomerAccount(){
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("customer-registration.fxml"));
+                //Scene scene = new Scene(fxmlLoader.load(), 600, 400);
                 Stage registerStage = new Stage();
-                registerStage.setTitle("Register");
+                registerStage.setTitle("Customer registration");
                 registerStage.setScene(new Scene(root, 600,400));
                 registerStage.show();
 
@@ -150,4 +165,15 @@ public class LoginController implements Initializable {
                 e.getCause();
             }
         }
+
+
+
+
+
+
+
+
+
+
+
 }
