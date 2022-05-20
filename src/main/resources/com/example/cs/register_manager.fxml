@@ -19,7 +19,7 @@
                   <Image url="C:\Users\Paul\OneDrive - Universitatea Politehnica Timisoara\Desktop\UPT\An II\Semestrul II\FIS\fisprj\src\main\resources\service.png" />
                </image>
             </ImageView>
-            <Button fx:id="backloginButton" layoutX="83.0" layoutY="276.0" mnemonicParsing="false" onAction="#backToLogin" style="-fx-background-color: transparent;" text="Log In" textFill="#2b00ff">
+            <Button fx:id="backloginButton" layoutX="83.0" layoutY="289.0" mnemonicParsing="false" onAction="#backToLogin" style="-fx-background-color: transparent;" text="Log In" textFill="#2b00ff">
                <font>
                   <Font name="Univers Condensed Bold" size="12.0" />
                </font>

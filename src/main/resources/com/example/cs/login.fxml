@@ -16,7 +16,7 @@
             <children>
 
 
-                <Label fx:id="msgLabel" layoutX="26.0" layoutY="222.0" text="Enter your username and password">
+                <Label fx:id="Label" layoutX="26.0" layoutY="222.0" text="Enter your username and password">
                     <font>
                         <Font name="Univers Condensed Bold" size="12.0" />
                     </font></Label>
@@ -87,6 +87,11 @@
                </image>
             </ImageView>
             <PasswordField fx:id="tf_password" layoutX="134.0" layoutY="202.0" prefHeight="26.0" prefWidth="194.0" promptText="password" />
+            <Label fx:id="msgLabel" layoutX="135.0" layoutY="237.0" prefHeight="14.0" prefWidth="95.0" textFill="#d40000">
+               <font>
+                  <Font name="Univers Condensed Bold" size="11.0" />
+               </font>
+            </Label>
             </children></AnchorPane>
     </children>
 </HBox>
