@@ -44,10 +44,6 @@ public class LoginController implements Initializable {
         File brandingFile = new File("src/main/resources/com/example/cs/service.png");
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
-
-//        File lockFile = new File("src/main/resources/com/example/cs/lock.png");
-//        Image  lockImage = new Image(lockFile.toURI().toString());
-//        lockImageView.setImage(brandingImage);
     }
     ///////////////////////////////////////////////////////////////////////////////LogincreateCustomerAccount();
     ////////////////////////////////////////////////////////////////////////////pentru user (=customer)
@@ -108,8 +104,6 @@ public class LoginController implements Initializable {
     }
 
     public void registerManagerAction(ActionEvent event){
-//        Stage stage = (Stage) button_sign_up_customer.getScene().getWindow();
-//        stage.close();
         createCustomerAccount();
     }
 
@@ -146,7 +140,6 @@ public class LoginController implements Initializable {
         public void createCustomerAccount(){
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("customer-registration.fxml"));
-                //Scene scene = new Scene(fxmlLoader.load(), 600, 400);
                 Stage registerStage = new Stage();
                 registerStage.setTitle("Register");
                 registerStage.setScene(new Scene(root, 600,400));
@@ -157,15 +150,4 @@ public class LoginController implements Initializable {
                 e.getCause();
             }
         }
-
-
-
-
-
-
-
-
-
-
-
 }
