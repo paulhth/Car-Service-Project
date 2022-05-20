@@ -1,8 +1,9 @@
 module com.example.carserviceapp {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
-    opens com.example.carserviceapp to javafx.fxml;
-    exports com.example.carserviceapp;
+    opens com.example.cs to javafx.fxml;
+    exports com.example.cs;
 }
