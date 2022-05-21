@@ -20,11 +20,11 @@
                     <font>
                         <Font name="Univers Condensed Bold" size="12.0" />
                     </font></Label>
-            <ImageView fx:id="brandingImageView" fitHeight="150.0" fitWidth="200.0" layoutX="30.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@service.png" />
-               </image>
-            </ImageView>
+                <ImageView fx:id="brandingImageView" fitHeight="150.0" fitWidth="200.0" layoutX="30.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@service.png" />
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
         <AnchorPane prefHeight="400.0" prefWidth="408.0" style="-fx-background-color: E5E5E5;">
@@ -81,17 +81,17 @@
                         <Font name="Univers Condensed Bold" size="16.0" />
                     </font>
                 </Label>
-            <ImageView fx:id="lockImageView" fitHeight="150.0" fitWidth="200.0" layoutX="108.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@lock.png" />
-               </image>
-            </ImageView>
-            <PasswordField fx:id="tf_password" layoutX="134.0" layoutY="202.0" prefHeight="26.0" prefWidth="194.0" promptText="password" />
-            <Label fx:id="msgLabel" layoutX="135.0" layoutY="237.0" prefHeight="14.0" prefWidth="95.0" textFill="#d40000">
-               <font>
-                  <Font name="Univers Condensed Bold" size="11.0" />
-               </font>
-            </Label>
+                <ImageView fx:id="lockImageView" fitHeight="150.0" fitWidth="200.0" layoutX="108.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@lock.png" />
+                    </image>
+                </ImageView>
+                <PasswordField fx:id="tf_password" layoutX="134.0" layoutY="202.0" prefHeight="26.0" prefWidth="194.0" promptText="password" />
+                <Label fx:id="msgLabel" layoutX="135.0" layoutY="237.0" prefHeight="14.0" prefWidth="95.0" textFill="#d40000">
+                    <font>
+                        <Font name="Univers Condensed Bold" size="11.0" />
+                    </font>
+                </Label>
             </children></AnchorPane>
     </children>
 </HBox>
