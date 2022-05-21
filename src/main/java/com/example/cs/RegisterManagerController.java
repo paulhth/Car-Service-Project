@@ -1,6 +1,5 @@
 package com.example.cs;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -37,6 +34,8 @@ public class RegisterManagerController implements Initializable {
     private Label labelSucces;
     @FXML
     private Button backloginButton;
+    @FXML
+    private Label labelFailure;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,25 +66,31 @@ public class RegisterManagerController implements Initializable {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String service_name = tf_service_name.getText();
-        String password = tf_password.getText();
-        String location = tf_location.getText();
-        String offers = tf_offered_services.getText();
-        String phone = tf_phone.getText();
+        if(!tf_service_name.getText().isEmpty() && !tf_password.getText().isEmpty() && !tf_location.getText().isEmpty() && !tf_offered_services.getText().isEmpty() && !tf_phone.getText().isEmpty()) {
+            String service_name = tf_service_name.getText();
+            String password = tf_password.getText();
+            String location = tf_location.getText();
+            String offers = tf_offered_services.getText();
+            String phone = tf_phone.getText();
 
+            String insertFields = "insert into services (Name,Password,Location,Offers,Phone_number) values ('";
+            String insertValues = service_name + "','" + password + "','" + location + "','" + offers + "','" + phone + "')";
+            String insertToRegister = insertFields + insertValues;
 
-        String insertFields = "insert into services (Name,Password,Location,Offers,Phone_number) values ('";
-        String insertValues = service_name + "','" + password + "','" + location + "','" + offers + "','" + phone + "')";
-        String insertToRegister = insertFields + insertValues;
-
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(insertToRegister);
-            labelSucces.setText("Customer registered successfully!");//la final, dupa verificari ca text fields nu sunt empty
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
+            try{
+                Statement statement = connectDB.createStatement();
+                statement.executeUpdate(insertToRegister);
+                labelSucces.setText("Customer registered successfully!");//la final, dupa verificari ca text fields nu sunt empty
+            }catch (Exception e){
+                e.printStackTrace();
+                e.getCause();
+            }
         }
+        else{
+            labelFailure.setText("All fields must be filled in!");
+        }
+
+
 
     }
 
