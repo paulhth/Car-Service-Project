@@ -3,11 +3,11 @@ package com.example.cs;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DatabaseConnection {
-    public Connection databaseLink;
+public class DatabaseConnection { // = mysqlconnect.java
+    public Connection databaseLink; // = conn
 
-    public Connection getConnection(){
-        String databaseName = "schema_fis";
+    public Connection getConnection(){ // = ConnectDb()
+        String databaseName = "schema_fis";//schema name
         String databaseUser= "root";
         String databasePassword = "admin";
         String url = "jdbc:mysql://localhost/" + databaseName;
@@ -22,4 +22,6 @@ public class DatabaseConnection {
         }
         return databaseLink;
     }
+
+
 }

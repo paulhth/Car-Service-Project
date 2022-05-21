@@ -1,17 +1,17 @@
 package com.example.cs;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 import java.io.File;
 import java.net.URL;
@@ -115,7 +115,7 @@ public class LoginController implements Initializable {
                             Parent root = FXMLLoader.load(getClass().getResource("customer_main_page.fxml"));
                             Stage registerStage = (Stage) button_login_customer.getScene().getWindow();
                             registerStage.setTitle("Logged in as customer.");
-                            registerStage.setScene(new Scene(root, 600, 400));
+                            registerStage.setScene(new Scene(root, 700, 450));
 
 
                     }catch(Exception e){

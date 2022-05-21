@@ -1,1 +1,2 @@
-Enter some notes here for the upcoming stuff that needs to be done
+CustomerMainPageController are legat de el si Controller pentru tableview pentru populare tabel din database
+Trebuie facut inca un tabel pentru request de la customers catre managers
