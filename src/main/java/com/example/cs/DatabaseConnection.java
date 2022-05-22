@@ -1,5 +1,7 @@
 package com.example.cs;
 
+import com.mysql.cj.log.Log;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
