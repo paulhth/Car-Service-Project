@@ -13,6 +13,10 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -54,6 +58,7 @@ public class MainPageManagerController implements Initializable {
 
 
     ObservableList<ManagerTableViewMP> listS;
+    static String request;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -85,7 +90,6 @@ public class MainPageManagerController implements Initializable {
 
     public void refreshTable(ActionEvent action){
         try {
-            welcomeLabelManager.setText("Welcome " + LoginController.getServiceUsername() + "! ");
             Connection conn = DatabaseConnection.getConnection();
             col_name.setCellValueFactory(new PropertyValueFactory<ManagerTableViewMP,String>("name"));
             col_request.setCellValueFactory(new PropertyValueFactory<ManagerTableViewMP,String>("request"));
@@ -97,6 +101,64 @@ public class MainPageManagerController implements Initializable {
         }
     }
 
+    public boolean checkIfExists(Connection connection){
+
+        try{
+            ArrayList<String> lista_nume = DatabaseConnection.getCustomerString(connection);
+            for(int i=0;i<lista_nume.size();i++){
+                if(lista_nume.get(i).equals(tf_username.getText())){
+                    return true;
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void sendMessage(ActionEvent actionEvent){
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        if(checkIfExists(connectDB) && !tf_username.getText().isEmpty()){//daca are numele in baza de date -> send
+            String ofertant = LoginController.getServiceUsername();
+            String message = tfa_a_d_reason.getText();
+            String customer = tf_username.getText();
+
+            String insertFields = "insert into messages (ofertant,message,customer) values ('";
+            String insertValues = ofertant + "','" + message + "','" + customer + "')";
+            String insertToRegister = insertFields + insertValues;
 
 
+
+            try {
+                Statement statement = connectDB.createStatement();
+                statement.executeUpdate(insertToRegister);
+                label_success.setText("Message succesfully sent!");;//dupa verificari ca text fields nu sunt empty
+                //sterge din db:
+//                PreparedStatement ps = connectDB.prepareStatement("select * from requests where username = '" + LoginController.getUsername() + "'");
+//                ResultSet rs = ps.executeQuery();
+//                setRequest(rs.getString("options"));
+
+                String deleteCommand = "delete from requests where customer = '" + customer + "'";
+                statement.executeUpdate(deleteCommand);
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }finally {
+                tf_username.setText("");
+                tfa_a_d_reason.setText("");
+            }
+
+
+        }
+        else{
+            label_failure.setText("Username not found or text area empty!");
+        }
+    }
+
+//    public static void setRequest(String r){
+//        request = r;
+//    }
 }

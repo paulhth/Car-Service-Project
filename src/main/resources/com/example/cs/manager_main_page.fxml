@@ -43,15 +43,15 @@
       </TableView>
       <AnchorPane layoutX="440.0" layoutY="125.0" prefHeight="302.0" prefWidth="253.0">
          <children>
-            <TextArea fx:id="tfa_a_d_reason" layoutX="27.0" layoutY="74.0" prefHeight="182.0" prefWidth="200.0" promptText="Accept/Deny request and add reason" />
+            <TextArea fx:id="tfa_a_d_reason" layoutX="27.0" layoutY="74.0" prefHeight="182.0" prefWidth="200.0" promptText="Accept/Deny request - Specify deny reason or estimated time and total price" />
             <TextField fx:id="tf_username" layoutX="27.0" layoutY="22.0" prefHeight="26.0" prefWidth="200.0" promptText="Enter the clients' username" />
-            <Button fx:id="button_send" layoutX="184.0" layoutY="275.0" mnemonicParsing="false" style="-fx-background-color: FFECA5;" text="Send">
+            <Button fx:id="button_send" layoutX="184.0" layoutY="275.0" mnemonicParsing="false" onAction="#sendMessage" style="-fx-background-color: FFECA5;" text="Send">
                <font>
                   <Font name="Univers Condensed Bold" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="label_failure" layoutX="27.0" layoutY="-8.0" text="label_failure" textFill="#f20202" />
-            <Label fx:id="label_success" layoutX="27.0" layoutY="266.0" text="label_success" textFill="#00ef28" />
+            <Label fx:id="label_failure" layoutX="27.0" layoutY="-8.0" textFill="#f20202" />
+            <Label fx:id="label_success" layoutX="27.0" layoutY="266.0" textFill="#00ef28" />
          </children>
       </AnchorPane>
       <Button fx:id="button_refresh" layoutX="247.0" layoutY="78.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="28.0" prefWidth="71.0" style="-fx-background-color: FFECA5;" text="Refresh table">

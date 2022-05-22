@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class DatabaseConnection { // = mysqlconnect.java
     public static Connection databaseLink; // = conn
-    private static String car;
+    private static String car_and_year;
 
     public static Connection getConnection(){ // = ConnectDb()
         String databaseName = "schema_fis";//schema name
@@ -76,6 +76,24 @@ public class DatabaseConnection { // = mysqlconnect.java
         }
         return list;
     }
+    ////////////pentru mesaje
+    public static ObservableList<CustomerMessage> getDataMessages(Connection connection){
+        ObservableList<CustomerMessage> list = FXCollections.observableArrayList();
+        try{
+            PreparedStatement ps = connection.prepareStatement("select * from messages where customer = '" + LoginController.getUsername() + "'");
+            ResultSet rs = ps.executeQuery();
+
+            PreparedStatement as = connection.prepareStatement("select * from request_for_messages where customer = '" + LoginController.getUsername() + "'");
+            ResultSet ars = as.executeQuery();
+            while(rs.next() && ars.next()){
+                 list.add(new CustomerMessage(rs.getString("ofertant"),ars.getString("options"),rs.getString("message")));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+        return list;
+    }
 
     public static ArrayList<String> getNameString(Connection connection){//names
         ArrayList<String> name = new ArrayList<>();
@@ -92,16 +110,31 @@ public class DatabaseConnection { // = mysqlconnect.java
         return name;
     }
 
+    public static ArrayList<String> getCustomerString(Connection connection){//names
+        ArrayList<String> name = new ArrayList<>();
+        try{
+            PreparedStatement ps = connection.prepareStatement("select * from users");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                name.add(rs.getString("username"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+        return name;
+    }
+
     public static String getCar(Connection connection){
         try{
             PreparedStatement ps = connection.prepareStatement("select * from users where username = '" + LoginController.getUsername() + "'");
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) car=rs.getString("car") + " - " + rs.getString("year");
+            if(rs.next()) car_and_year=rs.getString("car") + " - " + rs.getString("year");
         }catch(Exception e){
             e.printStackTrace();
             e.getCause();
         }
-        return car;
+        return car_and_year;
     }
 
 }

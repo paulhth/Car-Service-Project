@@ -62,6 +62,9 @@ public class MainPageCustomerController implements Initializable
     @FXML
     private Label labelCar;
 
+    @FXML
+    private Button btc_messages;//button customer messages
+
     ObservableList<CustomerTableViewMP> listM;
 
     ResultSet rs = null;
@@ -79,6 +82,18 @@ public class MainPageCustomerController implements Initializable
             col_offers.setCellValueFactory(new PropertyValueFactory<CustomerTableViewMP,String>("offers"));
             listM = DatabaseConnection.getDataService(conn);
             table_services.setItems(listM);
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void showMessages(ActionEvent actionEvent){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("customer_received_messages.fxml"));
+            Stage registerStage = (Stage) btc_messages.getScene().getWindow();
+            registerStage.setTitle("Messages.");
+            registerStage.setScene(new Scene(root, 700, 450));
         }catch (Exception e){
             e.printStackTrace();
             e.getCause();
@@ -127,15 +142,24 @@ public class MainPageCustomerController implements Initializable
 
             String insertFields = "insert into requests (customer,options,ofertant) values ('";
             String insertValues = customer + "','" + operation + "','" + ofertant + "')";
-            String insertToRegister = insertFields + insertValues;
+            String insertToRegister1 = insertFields + insertValues;
+
+            insertFields = "insert into request_for_messages (customer,options,ofertant) values ('";
+            String insertToRegisterMSG = insertFields + insertValues;
+
 
             try {
                 Statement statement = connectDB.createStatement();
-                statement.executeUpdate(insertToRegister);
+                statement.executeUpdate(insertToRegister1);
+                statement.executeUpdate(insertToRegisterMSG);
                 label_succes.setText("Request succesfully created!");;//dupa verificari ca text fields nu sunt empty
+
             } catch (Exception e) {
                 e.printStackTrace();
                 e.getCause();
+            }finally{
+                tfa_operation.setText("");
+                tf_service_name.setText("");
             }
 
 
