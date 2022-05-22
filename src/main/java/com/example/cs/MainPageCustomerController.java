@@ -15,6 +15,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -53,25 +55,45 @@ public class MainPageCustomerController implements Initializable
     @FXML
     private Label welcomeLabel;
 
+    @FXML
+    private Label labelCar;
+
+    @FXML
+    private Button btc_messages;//button customer messages
+
     ObservableList<CustomerTableViewMP> listM;
 
-    int index = -1;
-
-    Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
 
 
-    @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        welcomeLabel.setText("Welcome " + LoginController.getUsername() + "! ");
+        try {
+            welcomeLabel.setText("Welcome " + LoginController.getUsername() + "! ");
+            Connection conn = DatabaseConnection.getConnection();
+            labelCar.setText("Registered with " + DatabaseConnection.getCar(conn));
+            col_name.setCellValueFactory(new PropertyValueFactory<CustomerTableViewMP,String>("name"));
+            col_location.setCellValueFactory(new PropertyValueFactory<CustomerTableViewMP,String>("location"));
+            col_offers.setCellValueFactory(new PropertyValueFactory<CustomerTableViewMP,String>("offers"));
+            listM = DatabaseConnection.getDataService(conn);
+            table_services.setItems(listM);
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 
-        col_name.setCellValueFactory(new PropertyValueFactory<CustomerTableViewMP,String>("Name"));
-        col_name.setCellValueFactory(new PropertyValueFactory<CustomerTableViewMP,String>("Location"));
-        col_name.setCellValueFactory(new PropertyValueFactory<CustomerTableViewMP,String>("Offered services"));
-
-        listM = DataBaseConnectionTVCMP.getDataService();;//DataBaseConnectionTVCMP.getDataService();
-        table_services.setItems(listM);
+    public void showMessages(ActionEvent actionEvent){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("customer_received_messages.fxml"));
+            Stage registerStage = (Stage) btc_messages.getScene().getWindow();
+            registerStage.setTitle("Messages.");
+            registerStage.setScene(new Scene(root, 700, 450));
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
     public void backToLogin(ActionEvent event){
@@ -83,6 +105,63 @@ public class MainPageCustomerController implements Initializable
         }catch (Exception e){
             e.printStackTrace();
             e.getCause();
+        }
+    }
+
+    public boolean checkIfExists(Connection connection){
+
+        try{
+            ArrayList<String> lista_nume = DatabaseConnection.getNameString(connection);
+            for(int i=0;i<lista_nume.size();i++){
+                if(lista_nume.get(i).equals(tf_service_name.getText())){
+                    return true;
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
+    @FXML
+    public void makeRequest(ActionEvent event){
+        label_succes.setText("");
+        label_failure.setText("");
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        if(checkIfExists(connectDB) && !tfa_operation.getText().isEmpty()){//daca are numele in baza de date -> face request
+            String customer = LoginController.getUsername();
+            String operation = tfa_operation.getText();
+            String ofertant = tf_service_name.getText();
+
+            String insertFields = "insert into requests (customer,options,ofertant) values ('";
+            String insertValues = customer + "','" + operation + "','" + ofertant + "')";
+            String insertToRegister1 = insertFields + insertValues;
+
+            insertFields = "insert into request_for_messages (customer,options,ofertant) values ('";
+            String insertToRegisterMSG = insertFields + insertValues;
+
+
+            try {
+                Statement statement = connectDB.createStatement();
+                statement.executeUpdate(insertToRegister1);
+                statement.executeUpdate(insertToRegisterMSG);
+                label_succes.setText("Request succesfully created!");;//dupa verificari ca text fields nu sunt empty
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }finally{
+                tfa_operation.setText("");
+                tf_service_name.setText("");
+            }
+
+
+        }
+        else{
+            label_failure.setText("Service not found or wanted offers not completed");
         }
     }
 }

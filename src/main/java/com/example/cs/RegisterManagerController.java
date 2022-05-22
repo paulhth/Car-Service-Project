@@ -63,6 +63,8 @@ public class RegisterManagerController implements Initializable {
     }
 
     public void registerCustomer(){
+        labelFailure.setText("");
+        labelSucces.setText("");
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
@@ -89,9 +91,5 @@ public class RegisterManagerController implements Initializable {
         else{
             labelFailure.setText("All fields must be filled in!");
         }
-
-
-
     }
-
 }

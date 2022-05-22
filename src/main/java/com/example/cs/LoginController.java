@@ -43,6 +43,7 @@ public class LoginController implements Initializable {
 
     private static String username;
     private static String serviceUsername;
+    private static String car;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,6 +66,7 @@ public class LoginController implements Initializable {
         }
     }
 
+
     public void registerCustomerAction(ActionEvent event){
         createCustomerAccount();
     }
@@ -80,6 +82,13 @@ public class LoginController implements Initializable {
     public void setManagerUsername(){
         serviceUsername = tf_username.getText();
     }
+
+//    public static String getCar(){
+//        DatabaseConnection connection = new DatabaseConnection();
+//        Connection connectDB = connection.getConnection();
+//
+//        return "";
+//    }
 
     public static String getServiceUsername(){
         return serviceUsername;
@@ -191,7 +200,7 @@ public class LoginController implements Initializable {
                         Parent root = FXMLLoader.load(getClass().getResource("manager_main_page.fxml"));
                         Stage registerStage = (Stage) button_login_service.getScene().getWindow();
                         registerStage.setTitle("Logged in as manager.");
-                        registerStage.setScene(new Scene(root, 600, 400));
+                        registerStage.setScene(new Scene(root, 700, 450));
 
 
                     }catch(Exception e){

@@ -12,7 +12,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs.RegisterCustomerController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="215.0" style="-fx-background-color: #FFECA5;">
+      <AnchorPane prefHeight="400.0" prefWidth="210.0" style="-fx-background-color: #FFECA5;">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-1.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="9.0" layoutY="221.0" text="Customer Registration">
@@ -21,7 +21,7 @@
                </font>
             </Label>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="8.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="186.0" fitWidth="198.0" layoutX="9.0" layoutY="8.0">
+            <ImageView fitHeight="150.0" fitWidth="156.0" layoutX="27.0" layoutY="32.0">
                <image>
                   <Image url="@service.png" />
                </image>
@@ -95,9 +95,9 @@
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="button_register" layoutX="109.0" layoutY="321.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefWidth="162.0" style="-fx-background-color: #FFECA5;" text="Register">
+            <Button fx:id="button_register" layoutX="249.0" layoutY="317.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="18.0" prefWidth="114.0" style="-fx-background-color: #FFECA5;" text="Register">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
+                  <Font name="Univers Condensed Bold" size="12.0" />
                </font>
             </Button>
             <PasswordField fx:id="tfc_password" layoutX="190.0" layoutY="117.0" prefHeight="26.0" prefWidth="174.0" promptText="password">
@@ -106,6 +106,11 @@
                </font>
             </PasswordField>
             <Label fx:id="Labelsucces" layoutX="97.0" layoutY="21.0" prefHeight="18.0" prefWidth="186.0" textAlignment="RIGHT" textFill="#00c11d" />
+            <Label fx:id="LabelFailure" layoutX="191.0" layoutY="293.0" textFill="#ec2929">
+               <font>
+                  <Font name="Univers Condensed Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

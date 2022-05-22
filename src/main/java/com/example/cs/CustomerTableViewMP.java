@@ -1,6 +1,6 @@
 package com.example.cs;
 
-public class CustomerTableViewMP {
+public class CustomerTableViewMP{
     String name;
     String location;
     String offers;
