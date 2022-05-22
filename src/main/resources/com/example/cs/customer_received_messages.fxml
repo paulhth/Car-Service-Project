@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E5E5E5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs.CustomerReceivedMessages">
+   <children>
+      <Button layoutX="21.0" layoutY="20.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="123.0" style="-fx-background-color: #FFECA5;" text="&lt;- Back to main page" textAlignment="CENTER">
+         <font>
+            <Font size="11.0" />
+         </font></Button>
+      <Label layoutX="204.0" layoutY="69.0" text="Received messages">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font></Label>
+      <TextField layoutX="22.0" layoutY="127.0" prefHeight="251.0" prefWidth="558.0" />
+   </children>
+</AnchorPane>
