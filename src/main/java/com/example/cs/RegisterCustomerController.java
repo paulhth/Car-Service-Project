@@ -1,5 +1,6 @@
 package com.example.cs;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,12 +11,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class RegisterCustomerController implements Initializable {
@@ -42,6 +45,10 @@ public class RegisterCustomerController implements Initializable {
     private Label LabelFailure;
 
 
+
+    ArrayList<String> names = new ArrayList<String>();
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        File brandingFile = new File("src/main/resources/com/example/cs/service.png");
@@ -54,8 +61,6 @@ public class RegisterCustomerController implements Initializable {
 
     public void registerButtonOnAction(ActionEvent actionEvent){
         registerCustomer();
-
-
     }
     public void backToLogin(ActionEvent event){
         try {
@@ -71,6 +76,8 @@ public class RegisterCustomerController implements Initializable {
     }
 
     public void registerCustomer(){
+        LabelFailure.setText("");
+        LabelFailure.setText("");
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
@@ -98,6 +105,11 @@ public class RegisterCustomerController implements Initializable {
         else {
             LabelFailure.setText("All fields must be filled in!");
         }
-
     }
+
+
+
+
+
+
 }
