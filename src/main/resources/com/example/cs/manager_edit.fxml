@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs.ManagerEditController">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: FFECA5;">
+            <children>
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="C:\Users\Paul\OneDrive - Universitatea Politehnica Timisoara\Desktop\UPT\An II\Semestrul II\FIS\fisprj\src\main\resources\service.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="67.0" layoutY="200.0" text="Edit facilities">
+                    <font>
+                        <Font name="Univers Condensed Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Button fx:id="button_back_main" layoutX="55.0" layoutY="320.0" mnemonicParsing="false" onAction="#backToMainPage" style="-fx-background-color: transparent;" text="Back to main page" textFill="#2b00ff">
+                    <font>
+                        <Font name="Univers Condensed Bold" size="12.0" />
+                    </font>
+                </Button>
+            </children></AnchorPane>
+        <AnchorPane prefHeight="400.0" prefWidth="402.0">
+            <children>
+                <TextField fx:id="tf_location" layoutX="141.0" layoutY="138.0" prefHeight="26.0" prefWidth="231.0" promptText="Street, City" />
+                <TextField fx:id="tf_offered_services" layoutX="141.0" layoutY="187.0" prefHeight="26.0" prefWidth="231.0" promptText="What can customers do at your service?" />
+                <Label layoutX="24.0" layoutY="94.0" text="Car service name">
+                    <font>
+                        <Font name="Univers Condensed Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="24.0" layoutY="141.0" text="Location">
+                    <font>
+                        <Font name="Univers Condensed Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="24.0" layoutY="190.0" text="Offered Services">
+                    <font>
+                        <Font name="Univers Condensed Bold" size="15.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tf_phone" layoutX="141.0" layoutY="235.0" prefHeight="26.0" prefWidth="231.0" promptText="Phone number" />
+                <Label layoutX="25.0" layoutY="238.0" text="Phone number">
+                    <font>
+                        <Font name="Univers Condensed Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="25.0" layoutY="285.0" text="Password">
+                    <font>
+                        <Font name="Univers Condensed Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Button fx:id="button_signup" layoutX="277.0" layoutY="334.0" mnemonicParsing="false" onAction="#editManager" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: FFECA5;" text="Edit profile">
+                    <font>
+                        <Font name="Univers Condensed Bold" size="12.0" />
+                    </font>
+                </Button>
+                <PasswordField fx:id="tf_password" layoutX="141.0" layoutY="281.0" prefHeight="26.0" prefWidth="231.0" promptText="Password" />
+                <Label fx:id="labelSucces" layoutX="187.0" layoutY="14.0" textAlignment="CENTER" textFill="#69ff70" />
+                <Label fx:id="labelFailure" layoutX="141.0" layoutY="340.0" textFill="#ff2323">
+                    <font>
+                        <Font name="Univers Condensed Bold" size="12.0" />
+                    </font>
+                </Label>
+            <Label fx:id="serviceName" layoutX="229.0" layoutY="95.0">
+               <font>
+                  <Font name="Univers Condensed Bold" size="16.0" />
+               </font>
+            </Label>
+            </children></AnchorPane>
+    </children>
+</HBox>
