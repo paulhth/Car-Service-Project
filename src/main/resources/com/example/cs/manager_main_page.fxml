@@ -38,8 +38,8 @@
       <TableView fx:id="table_requests" layoutX="29.0" layoutY="125.0" prefHeight="302.0" prefWidth="430.0">
         <columns>
           <TableColumn fx:id="col_name" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="col_request" prefWidth="215.99994659423828" text="Request" />
-            <TableColumn fx:id="col_car" prefWidth="138.4000244140625" text="Car model" />
+          <TableColumn fx:id="col_request" prefWidth="108.00000762939453" text="Request" />
+            <TableColumn fx:id="col_car" prefWidth="247.199951171875" text="Car model" />
         </columns>
       </TableView>
       <AnchorPane layoutX="440.0" layoutY="125.0" prefHeight="302.0" prefWidth="253.0">

@@ -5,10 +5,10 @@ public class ManagerTableViewMP {
     String request;
     String car;
 
-    public ManagerTableViewMP(String name, String request) {
+    public ManagerTableViewMP(String name, String request,String car) {
         this.name = name;
         this.request = request;
-//        this.car=car;
+        this.car=car;
     }
 
     public String getCar(){

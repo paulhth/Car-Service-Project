@@ -1,8 +1,5 @@
 package com.example.cs;
 
-import javafx.application.Platform;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -139,11 +135,13 @@ public class MainPageCustomerController implements Initializable
             String customer = LoginController.getUsername();
             String operation = tfa_operation.getText();
             String ofertant = tf_service_name.getText();
+            String car = labelCar.getText();
 
-            String insertFields = "insert into requests (customer,options,ofertant) values ('";
-            String insertValues = customer + "','" + operation + "','" + ofertant + "')";
+            String insertFields = "insert into requests (customer,options,ofertant,car) values ('";
+            String insertValues = customer + "','" + operation + "','" + ofertant + "','" + car + "')";
             String insertToRegister1 = insertFields + insertValues;
 
+            insertValues = customer + "','" + operation + "','" + ofertant + "')";
             insertFields = "insert into request_for_messages (customer,options,ofertant) values ('";
             String insertToRegisterMSG = insertFields + insertValues;
 

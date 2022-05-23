@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -74,7 +72,7 @@ public class MainPageManagerController implements Initializable {
             Connection conn = DatabaseConnection.getConnection();
             col_name.setCellValueFactory(new PropertyValueFactory<ManagerTableViewMP,String>("name"));
             col_request.setCellValueFactory(new PropertyValueFactory<ManagerTableViewMP,String>("request"));
-            //col_car.setCellValueFactory(new PropertyValueFactory<ManagerTableViewMP,String>("car"));
+            col_car.setCellValueFactory(new PropertyValueFactory<ManagerTableViewMP,String>("car"));
             listS = DatabaseConnection.getDataRequests(conn);
             table_requests.setItems(listS);
         }catch (Exception e){

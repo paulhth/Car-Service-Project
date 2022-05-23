@@ -1,11 +1,5 @@
 package com.example.cs;
 
-import javafx.fxml.Initializable;
-
-import java.net.URL;
-import java.sql.Connection;
-import java.util.ResourceBundle;
-
 public class CustomerTableViewMP{
     String name;
     String location;
