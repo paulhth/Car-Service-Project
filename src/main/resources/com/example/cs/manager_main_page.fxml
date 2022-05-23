@@ -16,7 +16,7 @@
             <Font name="Univers Condensed Bold" size="11.0" />
          </font>
       </Button>
-      <Button fx:id="button_logout1" layoutX="14.0" layoutY="76.0" mnemonicParsing="false" style="-fx-background-color: FFECA5;" text="Edit your car service details">
+      <Button fx:id="button_edit" layoutX="14.0" layoutY="76.0" mnemonicParsing="false" onAction="#editProfile" style="-fx-background-color: FFECA5;" text="Edit your car service details">
          <font>
             <Font name="Univers Condensed Bold" size="14.0" />
          </font>
@@ -35,10 +35,11 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="table_requests" layoutX="29.0" layoutY="125.0" prefHeight="301.0" prefWidth="411.0">
+      <TableView fx:id="table_requests" layoutX="29.0" layoutY="125.0" prefHeight="302.0" prefWidth="430.0">
         <columns>
           <TableColumn fx:id="col_name" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="col_request" prefWidth="335.1999771118164" text="Request" />
+          <TableColumn fx:id="col_request" prefWidth="215.99994659423828" text="Request" />
+            <TableColumn fx:id="col_car" prefWidth="138.4000244140625" text="Car model" />
         </columns>
       </TableView>
       <AnchorPane layoutX="440.0" layoutY="125.0" prefHeight="302.0" prefWidth="253.0">

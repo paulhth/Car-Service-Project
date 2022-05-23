@@ -67,6 +67,9 @@ public class DatabaseConnection { // = mysqlconnect.java
             PreparedStatement ps = connection.prepareStatement("select * from requests where ofertant = '" + LoginController.getServiceUsername() + "'");
             ResultSet rs = ps.executeQuery();
 
+//            PreparedStatement ps2 = connection.prepareStatement("select * from users where username = '" + rs.getString("customer") + "'");
+//            ResultSet rs2 = ps2.executeQuery();
+
             while(rs.next()){
                 list.add(new ManagerTableViewMP(rs.getString("customer"),rs.getString("options")));
             }

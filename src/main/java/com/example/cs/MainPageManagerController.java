@@ -40,6 +40,9 @@ public class MainPageManagerController implements Initializable {
     private TableColumn<ManagerTableViewMP, String> col_request;
 
     @FXML
+    private TableColumn<ManagerTableViewMP, String> col_car;
+
+    @FXML
     private Label label_failure;
 
     @FXML
@@ -51,10 +54,14 @@ public class MainPageManagerController implements Initializable {
     @FXML
     private TextArea tfa_a_d_reason;
 
+
     @FXML
     private Label welcomeLabelManager;
     @FXML
     private TableView<ManagerTableViewMP> table_requests;
+
+    @FXML
+    private Button button_edit;
 
 
     ObservableList<ManagerTableViewMP> listS;
@@ -62,12 +69,12 @@ public class MainPageManagerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         try {
             welcomeLabelManager.setText("Welcome " + LoginController.getServiceUsername() + "! ");
             Connection conn = DatabaseConnection.getConnection();
             col_name.setCellValueFactory(new PropertyValueFactory<ManagerTableViewMP,String>("name"));
             col_request.setCellValueFactory(new PropertyValueFactory<ManagerTableViewMP,String>("request"));
+            //col_car.setCellValueFactory(new PropertyValueFactory<ManagerTableViewMP,String>("car"));
             listS = DatabaseConnection.getDataRequests(conn);
             table_requests.setItems(listS);
         }catch (Exception e){
@@ -161,4 +168,18 @@ public class MainPageManagerController implements Initializable {
 //    public static void setRequest(String r){
 //        request = r;
 //    }
+
+    public void editProfile(ActionEvent actionEvent){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("manager_edit.fxml"));
+            Stage registerStage = (Stage) button_logout.getScene().getWindow();
+            registerStage.setTitle("Edit profile");
+            registerStage.setScene(new Scene(root, 600, 400));
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+
 }
