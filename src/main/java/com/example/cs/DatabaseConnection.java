@@ -1,7 +1,5 @@
 package com.example.cs;
 
-import com.mysql.cj.log.Log;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -60,6 +58,8 @@ public class DatabaseConnection { // = mysqlconnect.java
         return list;
     }
 
+    //salvez numele din tabela requests intr-o variabila
+    //caut in users variabila si afisez masina lui corespunzatoare
     public static ObservableList<ManagerTableViewMP> getDataRequests(Connection connection){
         ObservableList<ManagerTableViewMP> list = FXCollections.observableArrayList();
         try{
@@ -67,11 +67,8 @@ public class DatabaseConnection { // = mysqlconnect.java
             PreparedStatement ps = connection.prepareStatement("select * from requests where ofertant = '" + LoginController.getServiceUsername() + "'");
             ResultSet rs = ps.executeQuery();
 
-//            PreparedStatement ps2 = connection.prepareStatement("select * from users where username = '" + rs.getString("customer") + "'");
-//            ResultSet rs2 = ps2.executeQuery();
-
             while(rs.next()){
-                list.add(new ManagerTableViewMP(rs.getString("customer"),rs.getString("options")));
+                list.add(new ManagerTableViewMP(rs.getString("customer"),rs.getString("options"),rs.getString("car")));
             }
         }catch (Exception e){
             e.printStackTrace();

@@ -1,15 +1,11 @@
 package com.example.cs;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
-
-import static com.example.cs.DatabaseConnection.getDataService;
 
 public class Main extends Application {
     @Override
