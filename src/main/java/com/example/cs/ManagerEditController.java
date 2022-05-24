@@ -67,7 +67,7 @@ public class ManagerEditController implements Initializable {
             String offers = tf_offered_services.getText();
             String phone = tf_phone.getText();
 
-            String insertFields = "update services set Password = '" + password + "', Location = '" + location + "', Offers = '" + offers + "', Phone_number = '" + phone + "' where Name = '" + LoginController.getServiceUsername() + "'";
+            String insertFields = "update services set Password = '" + DatabaseConnection.encodePassword(LoginController.getServiceUsername(),password) + "', Location = '" + location + "', Offers = '" + offers + "', Phone_number = '" + phone + "' where Name = '" + LoginController.getServiceUsername() + "'";
              String insertValues = "";
             String insertToRegister = insertFields + insertValues;
 
