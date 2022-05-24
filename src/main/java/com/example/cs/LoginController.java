@@ -15,9 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -60,7 +58,7 @@ public class LoginController implements Initializable {
     public void loginCustomerAction(ActionEvent event){
         if(tf_username.getText().isBlank() == false && tf_password.getText().isBlank() == false){
             msgLabel.setText("Trying to log in ...");
-            validateLoginCustomer();
+            validateLoginCustomer(tf_username.getText(),tf_password.getText());
         }else{
             msgLabel.setText("Enter your username and password");
         }
@@ -99,16 +97,24 @@ public class LoginController implements Initializable {
 
 
 
-    public void validateLoginCustomer(){
+    public void validateLoginCustomer(String username,String password){
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "select count(1) from users where username = '" + tf_username.getText() + "' and password = '" + tf_password.getText() + "'";
+        //String verifyLogin = "select count(1) from users where username = '" + tf_username.getText() + "' and password = '" + DatabaseConnection.encodePassword(tf_username.getText(),tf_password.getText()) + "'";
 
         try{
 
-            Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
+            String passcrypt = DatabaseConnection.encodePassword(username,password);
+            String insert = "select count(1) from users where username =  ?  and password = ?";
+
+//            Statement statement = connectDB.createStatement();
+//            ResultSet queryResult = statement.executeQuery(verifyLogin);
+              PreparedStatement ps = connectDB.prepareStatement(insert);
+                ps.setString(1,username);
+               ps.setString(2,DatabaseConnection.encodePassword(username,password));
+            ResultSet queryResult = ps.executeQuery();
+
 
             while(queryResult.next()){
                 if(queryResult.getInt(1) == 1){
@@ -121,6 +127,7 @@ public class LoginController implements Initializable {
 ////                        mainStage.setTitle("Manager registration");
 ////                        mainStage.setScene(new Scene(root, 600,400));
 ////                        mainStage.show();
+
                             Parent root = FXMLLoader.load(getClass().getResource("customer_main_page.fxml"));
                             Stage registerStage = (Stage) button_login_customer.getScene().getWindow();
                             registerStage.setTitle("Logged in as customer.");
@@ -141,6 +148,12 @@ public class LoginController implements Initializable {
             e.getCause();
         }
     }
+
+    public void checkCredentials(Connection connection,String username,String password){
+
+
+    }
+
 
 
     ////////////////////////////////////////////////////////////////////////////pentru manager:
@@ -180,7 +193,7 @@ public class LoginController implements Initializable {
         DatabaseConnection connect = new DatabaseConnection();
         Connection connectDB = connect.getConnection();
 
-        String verifyLogin = "select count(1) from services where Name = '" + tf_username.getText() + "' and Password = '" + tf_password.getText() + "'";
+        String verifyLogin = "select count(1) from services where Name = '" + tf_username.getText() + "' and Password = '" + DatabaseConnection.encodePassword(tf_username.getText(),tf_password.getText()) + "'";
         try{
 
             Statement statement = connectDB.createStatement();

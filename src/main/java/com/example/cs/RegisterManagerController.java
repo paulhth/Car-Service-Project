@@ -59,10 +59,10 @@ public class RegisterManagerController implements Initializable {
     }
 
     public void registerButtonOnAction(ActionEvent actionEvent){
-        registerCustomer();
+        registerManager();
     }
 
-    public void registerCustomer(){
+    public void registerManager(){
         labelFailure.setText("");
         labelSucces.setText("");
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -76,13 +76,13 @@ public class RegisterManagerController implements Initializable {
             String phone = tf_phone.getText();
 
             String insertFields = "insert into services (Name,Password,Location,Offers,Phone_number) values ('";
-            String insertValues = service_name + "','" + password + "','" + location + "','" + offers + "','" + phone + "')";
+            String insertValues = service_name + "','" + DatabaseConnection.encodePassword(service_name,password) + "','" + location + "','" + offers + "','" + phone + "')";
             String insertToRegister = insertFields + insertValues;
 
             try{
                 Statement statement = connectDB.createStatement();
                 statement.executeUpdate(insertToRegister);
-                labelSucces.setText("Customer registered successfully!");//la final, dupa verificari ca text fields nu sunt empty
+                labelSucces.setText("Service registered successfully!");//la final, dupa verificari ca text fields nu sunt empty
             }catch (Exception e){
                 e.printStackTrace();
                 e.getCause();

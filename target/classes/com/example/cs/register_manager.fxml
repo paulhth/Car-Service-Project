@@ -72,10 +72,14 @@
                </font>
             </Button>
             <PasswordField fx:id="tf_password" layoutX="141.0" layoutY="281.0" prefHeight="26.0" prefWidth="231.0" promptText="Password" />
-            <Label fx:id="labelSucces" layoutX="187.0" layoutY="14.0" textFill="#69ff70" />
             <Label fx:id="labelFailure" layoutX="141.0" layoutY="340.0" textFill="#ff2323">
                <font>
                   <Font name="Univers Condensed Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelSucces" layoutX="141.0" layoutY="55.0" textFill="#00ff2b">
+               <font>
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
          </children></AnchorPane>
