@@ -1,3 +1,5 @@
+package com.example.cs;
+
 import com.example.cs.Main;
 
 public class Main_1 {
