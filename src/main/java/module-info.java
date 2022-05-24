@@ -7,4 +7,6 @@ module com.example.carserviceapp {
 
     opens com.example.cs to javafx.fxml;
     exports com.example.cs;
+//    exports;
+//    opens to
 }
