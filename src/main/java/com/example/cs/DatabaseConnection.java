@@ -3,6 +3,9 @@ package com.example.cs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -135,6 +138,23 @@ public class DatabaseConnection { // = mysqlconnect.java
             e.getCause();
         }
         return car_and_year;
+    }
+
+    public static String encodePassword(String salt, String password){//username, password
+        MessageDigest md = getMessageDigest();
+        md.update(salt.getBytes(StandardCharsets.UTF_8));
+        byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
+        return new String(hashedPassword,StandardCharsets.UTF_8);
+    }
+
+    private static MessageDigest getMessageDigest(){
+        MessageDigest md;
+        try{
+            md = MessageDigest.getInstance("SHA-512");
+        }catch(NoSuchAlgorithmException e){
+            throw new IllegalStateException("SHA-512 does not exist!");
+        }
+        return md;
     }
 
 }

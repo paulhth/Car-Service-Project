@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -58,7 +60,7 @@ public class RegisterCustomerController implements Initializable {
 
 
     public void registerButtonOnAction(ActionEvent actionEvent){
-        registerCustomer();
+        registerCustomer(actionEvent);
     }
     public void backToLogin(ActionEvent event){
         try {
@@ -73,7 +75,7 @@ public class RegisterCustomerController implements Initializable {
         //Platform.exit();
     }
 
-    public void registerCustomer(){
+    public void registerCustomer(ActionEvent event){
         LabelFailure.setText("");
         LabelFailure.setText("");
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -86,14 +88,15 @@ public class RegisterCustomerController implements Initializable {
             String address = tfc_address.getText();
             String car = tfc_carmanufacturer.getText();
             String year = tfc_yearofproduction.getText();
+            String crypt_pass=DatabaseConnection.encodePassword(username,password);
 
-            String insertFields = "insert into users (username,password,address,car,year,phone) values ('";
-            String insertValues = username + "','" + password + "','" + address + "','" + car + "','" + year + "','" + phone + "')";
-            String insertToRegister = insertFields + insertValues;
+//            String insertFields = "insert into users (username,password,address,car,year,phone) values ('";
+//            String insertValues = username + "','" + crypt_pass + "','" + address + "','" + car + "','" + year + "','" + phone+ "')";
+//            String insertToRegister = insertFields + insertValues;
 
             try {
                 Statement statement = connectDB.createStatement();
-                statement.executeUpdate(insertToRegister);
+                insertValues(connectDB,username,password,address,car,year,phone);
                 Labelsucces.setText("Customer registered successfully!");//dupa verificari ca text fields nu sunt empty
             } catch (Exception e) {
                 e.printStackTrace();
@@ -105,6 +108,25 @@ public class RegisterCustomerController implements Initializable {
         }
     }
 
+    public static void insertValues(Connection connection,String username,String password,String address,String car,String year,String phone){
+        String sqlInsertwithParams = "insert into users(username,password,address,car,year,phone)" + "values(?,?,?,?,?,?)";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlInsertwithParams);
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,DatabaseConnection.encodePassword(username,password));
+            preparedStatement.setString(3,address);
+            preparedStatement.setString(4,car);
+            preparedStatement.setString(5,year);
+            preparedStatement.setString(6,phone);
+
+            connection.setAutoCommit(false);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.commit();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
 
 
